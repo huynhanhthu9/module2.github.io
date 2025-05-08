@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User & Post Management</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    section { margin-bottom: 20px; }
+    input { padding: 5px; margin: 4px; }
+    button { padding: 5px 10px; margin: 4px; }
+  </style>
+</head>
+<body>
+
+  <h2>🧑‍💻 Quản lý người dùng & bài viết</h2>
+
+  <!-- Đăng nhập -->
+  <section>
+    <h3>🔐 Đăng nhập</h3>
+    <input type="text" id="loginEmail" placeholder="Email" />
+    <input type="password" id="loginPassword" placeholder="Mật khẩu" />
+    <button onclick="handleLogin()">Đăng nhập</button>
+  </section>
+
+  <!-- Đăng ký -->
+  <section>
+    <h3>📝 Đăng ký</h3>
+    <input type="text" id="regFirstName" placeholder="Họ" />
+    <input type="text" id="regLastName" placeholder="Tên" />
+    <input type="email" id="regEmail" placeholder="Email" />
+    <input type="password" id="regPassword" placeholder="Mật khẩu" />
+    <button onclick="handleRegister()">Đăng ký</button>
+  </section>
+
+  <!-- Tìm kiếm người dùng -->
+  <section>
+    <h3>👥 Danh sách người dùng</h3>
+    <input type="text" id="userKeyword" placeholder="Nhập từ khóa (hoặc để trống)" />
+    <button onclick="handleSearchUsers()">Tìm kiếm</button>
+  </section>
+
+  <!-- Danh sách bài viết -->
+  <section>
+    <h3>📰 Danh sách bài viết</h3>
+    <button onclick="listPosts()">Xem tất cả bài viết</button>
+    <input type="number" id="postIdDetail" placeholder="Nhập ID post" />
+    <button onclick="handlePostDetail()">Xem chi tiết</button>
+    <br/>
+    <input type="email" id="searchPostEmail" placeholder="Nhập email người dùng" />
+    <button onclick="handleSearchPostByEmail()">Tìm bài viết theo email</button>
+  </section>
+
+  <script src="users.js"></script>
+  <script src="posts.js"></script>
+  <script src="main.js"></script>
+  <script>
+    // Xử lý nhập dữ liệu từ form
+    function handleLogin() {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      login(email, password);
+    }
+
+    function handleRegister() {
+      const first_name = document.getElementById('regFirstName').value;
+      const last_name = document.getElementById('regLastName').value;
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
+      register(first_name, last_name, email, password);
+    }
+
+    function handleSearchUsers() {
+      const keyword = document.getElementById('userKeyword').value;
+      searchUsers(keyword);
+    }
+
+    function handlePostDetail() {
+      const id = parseInt(document.getElementById('postIdDetail').value);
+      if (!isNaN(id)) {
+        postDetail(id);
+      } else {
+        alert("Vui lòng nhập ID hợp lệ");
+      }
+    }
+
+    function handleSearchPostByEmail() {
+      const email = document.getElementById('searchPostEmail').value;
+      searchPostByEmail(email);
+    }
+  </script>
+
+</body>
+</html>
